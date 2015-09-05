@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th><h3> Adding Student Info: </h3></th>
+        <th><h3> Input Form</h3></th>
+</tr>
+</thead>
+<tbody>
+    <tr>
+        <td valign="top">
+            First Name<input id="v1" type="text" name="firstName" value="Test/Ralic" size="15" /><br>
+            Last Name<input id="v2" type="text" name="lastName" value="Test/Lo" size="15" /><br>
+            Age
+            <select id="v3" name="age" >
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+            </select><br>
+            Enroll Date <input id="v4" type="date" name="date1" value="1980-06-24" /><br>
+            End Date <input id="v5" type="date" name="date2" value="1990-06-24" />
+
+            <br>
+            <button onclick="AddOne()">AddOne by JS</button>
+            <button onclick="RemoveOne()">RemoveOne by JS</button>
+
+            <br>
+            <button onclick="DeleteAll()">DeleteAll by JS</button>
+            <button type="reset" value="reset">Reset by JS</button>
+
+        </td>
+
+        <td>
+            <p id="demo2"></p>
+
+            <script>
+                var result_list = "";
+                var person1 = {firstName: "John1", lastName: "Doe1", age: "146", date1: "1980-06-24", date2: "1980-09-24"};
+                var person2 = {firstName: "John2", lastName: "Doe2", age: "246", date1: "1981-06-24", date2: "1981-09-24"};
+                var person3 = {firstName: "John3", lastName: "Doe3", age: "346", date1: "1982-06-24", date2: "1982-09-24"};
+                var person4 = {firstName: "John4", lastName: "Doe4", age: "446", date1: "1983-06-24", date2: "1983-09-24"};
+                var person5 = {firstName: "John5", lastName: "Doe5", age: "546", date1: "1984-06-24", date2: "1984-09-24"};
+                var myArray = [];
+                myArray[0] = person1;
+                myArray[1] = person2;
+                myArray[2] = person3;
+                myArray[3] = person4;
+                myArray[4] = person5;
+                var updates = function () {
+                    result_list = "ID. First Name / Last Name / Age / Start Date/ End Date <br>";
+                    for (var i = 0; i < myArray.length; i++) {
+                        result_list = result_list + (i + 1) + " - ";
+                        result_list = result_list +
+                                myArray[i].firstName + " "
+                                + myArray[i].lastName + " "
+                                + myArray[i].age + " "
+                                + myArray[i].date1 + " "
+                                + myArray[i].date2;
+                        result_list = result_list + "<br>";
+                    }
+                    document.getElementById("demo2").innerHTML = result_list;
+                };
+
+                updates();
+
+                function AddOne() {
+                    var v1add = document.getElementById("v1").value;
+                    var v2add = document.getElementById("v2").value;
+                    var v3add = document.getElementById("v3").value;
+                    var v4add = document.getElementById("v4").value;
+                    var v5add = document.getElementById("v4").value;
+                    myArray.push({firstName: v1add, lastName: v2add, age: v3add, date1: v4add, date2: v5add});
+                    updates();
+                }
+
+                function RemoveOne() {
+                    myArray.pop();
+                    updates();
+                }
+
+                function DeleteAll() {
+                    myArray.splice(0, myArray.length);
+                    updates();
+                }
+            </script>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+
+<br>
+
+</body>
+
+</html>
