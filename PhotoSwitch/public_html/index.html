@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+//            $(document).ready(function () {
+//                $("#FadeIn").click(function () {
+//                    $("#div1").fadeIn("fast");
+//                    $("#div2").fadeIn("slow");
+//                    $("#div3").fadeIn("slow");
+//                    $("#div4").fadeIn("slow");
+//                    $("#div5").fadeIn("slow");
+//                    $("#div6").fadeIn("slow");
+//                    $("#div7").fadeIn("slow");
+//                    $("#div8").fadeIn("slow");
+//                    $("#div9").fadeIn("slow");
+//                });
+//                $("#FadeOut").click(function () {
+//                    $("#div1").fadeOut("fast");
+//                    $("#div2").fadeOut("slow");
+//                    $("#div3").fadeOut("slow");
+//                    $("#div4").fadeOut("slow");
+//                    $("#div5").fadeOut("slow");
+//                    $("#div6").fadeOut("slow");
+//                    $("#div7").fadeOut("slow");
+//                    $("#div8").fadeOut("slow");
+//                    $("#div9").fadeOut("slow");
+//                });
+//            });
+
+//            $(document).ready(function () {
+//                $("#FadeIn").click(function () {
+//                    $("div").each(function (i) {
+//                        // element == this
+//                        $(this).fadeIn(i * 500);
+//                    });
+//                });
+//                $("#FadeOut").click(function () {
+//                    $("div").each(function (i) {
+//                        // element == this
+//                        $(this).fadeOut(i * 500);
+//                    });
+//                });
+//            });
+
+            var count = 0;
+            $(document).ready(function () {
+                var n = $("div").each(function () {
+                    count = count + 1;
+                });
+                console.log(count);
+                $("#FadeIn").click(fadeinH);
+                $("#FadeOut").click(fadeoutH);
+            });
+//            n = 10;
+
+
+
+            function fadeinH() {
+                $("div").each(
+                        function (i) {
+                            // element == this
+                            $(this).fadeIn(i * 500);
+                        }
+
+                );
+                setTimeout(fadeoutH, count * 500);
+            }
+
+            function fadeoutH() {
+                $("div").each(
+                        function (i) {
+                            // element == this
+                            $(this).fadeOut((count - i) * 500);
+                        }
+                );
+                setTimeout(fadeinH, count * 500);
+            }
+
+            $(document).ready(function () {
+                fadeinH();
+            });
+
+        </script>
+    </head>
+    <body>
+        <button id="FadeIn">FadeIn</button>
+        <button id="FadeOut">Fadeout</button>
+        <table >
+            <tr>
+                <td>
+                    <link rel="stylesheet" type="text/css" href="image.css">
+                    <div>
+                        <!--</div> id="div1" >-->
+                        <img src ="./imgs/1.png" alt="1.png">
+                    </div></td>
+                <td>
+                    <div>
+                        <img src ="./imgs/2.png" alt="2.png">
+                    </div></td>
+                <td>
+                    <div>
+                        <img src ="./imgs/3.png" alt="3.png">
+                    </div></td>
+            <tr>
+
+            <tr>
+                <td>
+                    <div>
+                        <img src ="./imgs/4.png" alt="4.png">
+                    </div></td>
+                <td>
+                    <div>
+                        <img src ="./imgs/5.png" alt="5.png">
+                    </div></td>
+                <td>
+                    <div>
+                        <img src ="./imgs/6.png" alt="6.png">
+                    </div></td>
+            <tr>
+
+            <tr>
+                <td>
+                    <div>
+                        <img src ="./imgs/7.png" alt="7.png">
+                    </div></td>
+                <td>
+                    <div>
+                        <img src ="./imgs/8.png" alt="8.png">
+                    </div></td>
+                <td>
+                    <div>
+                        <img src ="./imgs/9.png" alt="8.png">
+                    </div></td>
+            <tr>
+        </table>
+
+        <!--        <br>
+                For Testing of Bubbling.
+                <link type="text/css" rel="stylesheet" href="./example.css" property="s">
+                <div class="d1">1
+                    <div class="d2">2
+                        <div class="d3">3
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    var divs = document.getElementsByTagName('div');
+                    for (var i = 0; i < divs.length; i++) {
+                        divs[i].addEventListener("click", highlightThis, true);
+                        divs[i].addEventListener("click", highlightThis, false);
+                    }
+                    ;
+                    function highlightThis() {
+                        this.style.backgroundColor = 'yellow';
+                        alert(this.className);
+                        this.style.backgroundColor = '';
+                    }
+                    ;
+                </script>-->
+
+    </body>
+</html>
