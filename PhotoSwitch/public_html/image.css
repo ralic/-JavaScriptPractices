@@ -7,8 +7,26 @@ and open the template in the editor.
     Created on : Sep 5, 2015, Sep 5, 2015 8:53:37 AM
     Author     : raliclo
 */
+
+
+tr{ ;
+    text-align:center;
+    /*background-image:   url("http://ohtoptens.com/wp-content/uploads/2015/06/Flower-Images-and-Wallpapers-61.jpg");*/
+}
+
+img {
+    width:100px;
+    height:100px;
+    resize: both;
+}
+
 div {
-    width:400px;
+    width:100%;
     height:100%;
     display:none;
+}
+
+.withImg {
+    border-style: dotted;
+    border-width: 1px;
 }

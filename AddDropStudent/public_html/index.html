@@ -6,10 +6,17 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <!--<script type="text/javascript" src="//jqueryui.com/wp-includes/js/comment-reply.min.js?ver=4.2.1"></script>-->
+        <!--//Old jQuery -->
+        <!--datepicker() available-->
         <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+        <!--//New jQuery  -->
+        <!-- JaveScript 1.8 Already Intergrated datepicker-->
+        <!--        <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+                <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/jquery-ui.js">-->
+
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,8 +149,9 @@ and open the template in the editor.
                 $("#btn4").click(btn4_handler); // Delete all
                 $(function () {
                     $(".dates").datepicker();
+                    // DatePicker
                 });
-                // DatePicker
+
             });
             var count = 2;
             function btn1_handler() {

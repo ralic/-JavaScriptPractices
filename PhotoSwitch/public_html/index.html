@@ -6,13 +6,70 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-        <title>TODO supply a title</title>
+        <title> PhotoSwitch</title>
+        <!--
+                <script type="application/javascript;version=1.8"> </script>-->
+        <!--//Old jQuery -->
+        <!--: Program Performance :632.23-->
+        <!--        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>-->
+
+        <!--//New jQuery  -->
+        <!--:Program Performance :536.9300000000001-->
+        <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/jquery-ui.js">
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script id="objToStrings">
+// this script helps print details of objects.
+            var objToStrings = function (obj, maxLevel, objLevel) {
+                if (typeof objLevel === "undefined") {
+                    objLevel = 0;
+                }
+                if (typeof objLevel === "undefined") {
+                    maxLevel = 0;
+                }
+                var objStr = '';
+                // Remove this if you don't want the pre tag, but make sure to remove
+                // the close pre tag on the bottom as well
+                if (objLevel === 0) {
+                    objStr = '<pre>';
+                }
+
+                var objLevelStr = '';
+                for (var objX = 0; objX < objLevel; objX++) {
+                    objLevelStr += '    ';
+                }
+
+                if (maxLevel !== 0 && objLevel >= maxLevel) {
+                    objStr += objLevelStr + '...</br>';
+                    return objStr;
+                }
+
+                for (var objP in objO) {
+                    if (typeof objO[objP] === 'string') {
+                        objStr += objLevelStr +
+                                objP + ': ' + objO[objP] + ' </br>';
+                    } else {
+                        objStr += objLevelStr +
+                                objP + ': { </br>' + objToStrings(objO[objP], maxLevel, objLevel + 1) + objLevelStr + '}</br>';
+                    }
+                }
+
+                // Remove this if you don't want the pre tag, but make sure to remove
+                // the open pre tag on the top as well
+                if (objLevel === 0) {
+                    objStr += '</pre>';
+                }
+                return objStr;
+            };
+        </script>
+
         <script>
+
 //            $(document).ready(function () {
 //                $("#FadeIn").click(function () {
 //                    $("#div1").fadeIn("fast");
@@ -52,93 +109,102 @@ and open the template in the editor.
 //                    });
 //                });
 //            });
-            var count = 0;
+            var count = 0;  // count number of div with image
+            var clocksec = 500; // clock msec
             $(document).ready(function () {
-                var n = $("div").each(function () {
+                // count "div" numbers
+                var n = $("div.withImg").each(function () {
                     count = count + 1;
                 });
                 console.log(count);
                 $("#FadeIn").click(fadeinH);
                 $("#FadeOut").click(fadeoutH);
             });
-//            n = 10;
-
-
 
             function fadeinH() {
                 $("div").each(
                         function (i) {
                             // element == this
-                            $(this).fadeIn(i * 500);
+                            $(this).fadeIn(i * clocksec);
+//                            $(this).addEventListener("click", function () {
+//                    myFunction(p1, p2);
+//                    });
                         }
-
                 );
-                setTimeout(fadeoutH, count * 500);
+                setTimeout(fadeoutH, count * clocksec);
+
             }
 
             function fadeoutH() {
                 $("div").each(
                         function (i) {
                             // element == this
-                            $(this).fadeOut((count - i) * 500);
+                            $(this).fadeOut((count - i) * clocksec);
                         }
                 );
-                setTimeout(fadeinH, count * 500);
+                setTimeout(fadeinH, count * clocksec);
             }
 
             $(document).ready(function () {
+                //Console Log Program Performance
+                console.log("Program Performance :" + performance.now());
                 fadeinH();
             });
 
+
         </script>
+
     </head>
     <body>
         <button id="FadeIn">FadeIn</button>
         <button id="FadeOut">Fadeout</button>
+        <p id="test"></p>
+
+        <!--// Image table //-->
+        <link rel="stylesheet" type="text/css" href="image.css">
         <table >
             <tr>
                 <td>
-                    <link rel="stylesheet" type="text/css" href="image.css">
-                    <div>
+                    <div class="withImg">
                         <!--</div> id="div1" >-->
                         <img src ="./imgs/1.png" alt="1.png">
                     </div></td>
                 <td>
-                    <div>
+                    <div class="withImg">
                         <img src ="./imgs/2.png" alt="2.png">
                     </div></td>
                 <td>
-                    <div>
+                    <div class="withImg">
                         <img src ="./imgs/3.png" alt="3.png">
                     </div></td>
             <tr>
 
             <tr>
                 <td>
-                    <div>
+                    <div class="withImg">
                         <img src ="./imgs/4.png" alt="4.png">
                     </div></td>
                 <td>
-                    <div>
+                    <div class="withImg">
                         <img src ="./imgs/5.png" alt="5.png">
                     </div></td>
                 <td>
-                    <div>
+                    <div class="withImg">
                         <img src ="./imgs/6.png" alt="6.png">
                     </div></td>
             <tr>
 
             <tr>
                 <td>
-                    <div>
+                    <div class="withImg">
                         <img src ="./imgs/7.png" alt="7.png">
                     </div></td>
                 <td>
-                    <div>
+                    <div class="withImg">
                         <img src ="./imgs/8.png" alt="8.png">
                     </div></td>
                 <td>
-                    <div>
+                    <div class="withImg">
                         <img src ="./imgs/9.png" alt="8.png">
                     </div></td>
             <tr>
@@ -146,7 +212,7 @@ and open the template in the editor.
 
         <!--        <br>
                 For Testing of Bubbling.
-                <link type="text/css" rel="stylesheet" href="./example.css" property="s">
+                <link type="text/css" rel="stylesheet" href="./BubblingExample.css" property="s">
                 <div class="d1">1
                     <div class="d2">2
                         <div class="d3">3
@@ -169,4 +235,9 @@ and open the template in the editor.
                 </script>-->
 
     </body>
+
 </html>
+
+<!--        <script src="https://github.com/mbostock/d3/blob/master/src/d3.js"></script>-->
+<!--        <script src="https://assets-cdn.github.com/assets/frameworks-06e65f5639cc52d1aaada53115a54614b60fa90ab446a673e3e1818df167663b.js"></script>
+        <script src="https://assets-cdn.github.com/assets/github-435b0c380a8b91b3f42654ca3dbe8b623eebe6dfa2314a80f961d364de7e3f42.js"></script>-->
