@@ -6,24 +6,70 @@ and open the template in the editor.
 -->
 <html>
     <head>
+
         <!--//Old jQuery -->
         <!--datepicker() available-->
-        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <!--        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>-->
 
         <!--//New jQuery  -->
-        <!-- JaveScript 1.8 Already Intergrated datepicker-->
-        <!--        <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
-                <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/jquery-ui.js">-->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script id="Objprint">
+            // this script helps print details of objects.
+            // Recursive print of object
+            var Objprint = function (objo, maxLevel, level) {
+                if (typeof level === "undefined") {
+                    level = 0;
+                }
+                if (typeof level === "undefined") {
+                    maxLevel = 0;
+                }
+
+                var objstr = '';
+                // Remove this if you don't want the pre tag, but make sure to remove
+                // the close pre tag on the bottom as well
+                if (level === 0) {
+                    objstr = '<pre>';
+                }
+
+                var levelStr = '';
+                for (var objx = 0; objx < level; objx++) {
+                    levelStr += '    ';
+                }
+
+                if (maxLevel !== 0 && level >= maxLevel) {
+                    objstr += levelStr + '...</br>';
+                    return objstr;
+                }
+
+                for (var objp in objo) {
+                    if (typeof objo[objp] === 'string') {
+                        objstr += levelStr +
+                                objp + ': ' + objo[objp] + ' </br>';
+                    } else {
+                        objstr += levelStr +
+                                objp + ': { </br>' + Objprint(objo[objp], maxLevel, level + 1) + levelStr + '}</br>';
+                    }
+                }
+
+                // Remove this if you don't want the pre tag, but make sure to remove
+                // the open pre tag on the top as well
+                if (level === 0) {
+                    objstr += '</pre>';
+                }
+                return objstr;
+            };
+        </script>
     </head>
 
     <body>
-
         <table border="1">
             <thead>
                 <tr>
@@ -58,7 +104,6 @@ and open the template in the editor.
 
         <td>
             <p id="demo2"></p>
-
             <script>
                 //            var result_list = "";
                 var person1 = {firstName: "John1", lastName: "Doe1", age: "146", date1: "1980-06-24", date2: "1980-09-24"};
@@ -85,6 +130,7 @@ and open the template in the editor.
                         result_list = result_list + "<br>";
                     }
                     document.getElementById("demo2").innerHTML = result_list;
+                    document.getElementById("test").innerHTML = Objprint(myArray);
                 };
                 updates();
                 function AddOne() {
@@ -210,6 +256,7 @@ and open the template in the editor.
 
 <br>
 
+<p id="test"></p>
 </body>
 
 </html>
