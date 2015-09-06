@@ -17,54 +17,58 @@ and open the template in the editor.
 
         <!--//New jQuery  -->
         <!--:Program Performance :536.9300000000001-->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/jquery-ui.js">
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <script id="objToStrings">
-// this script helps print details of objects.
-            var objToStrings = function (obj, maxLevel, objLevel) {
-                if (typeof objLevel === "undefined") {
-                    objLevel = 0;
+        <script id="Objprint">
+            // this script helps print details of objects.
+            // Recursive print of object
+            var Objprint = function (objo, maxLevel, level) {
+                if (typeof level === "undefined") {
+                    level = 0;
                 }
-                if (typeof objLevel === "undefined") {
+                if (typeof level === "undefined") {
                     maxLevel = 0;
                 }
-                var objStr = '';
+
+                var objstr = '';
                 // Remove this if you don't want the pre tag, but make sure to remove
                 // the close pre tag on the bottom as well
-                if (objLevel === 0) {
-                    objStr = '<pre>';
+                if (level === 0) {
+                    objstr = '<pre>';
                 }
 
-                var objLevelStr = '';
-                for (var objX = 0; objX < objLevel; objX++) {
-                    objLevelStr += '    ';
+                var levelStr = '';
+                for (var objx = 0; objx < level; objx++) {
+                    levelStr += '    ';
                 }
 
-                if (maxLevel !== 0 && objLevel >= maxLevel) {
-                    objStr += objLevelStr + '...</br>';
-                    return objStr;
+                if (maxLevel !== 0 && level >= maxLevel) {
+                    objstr += levelStr + '...</br>';
+                    return objstr;
                 }
 
-                for (var objP in objO) {
-                    if (typeof objO[objP] === 'string') {
-                        objStr += objLevelStr +
-                                objP + ': ' + objO[objP] + ' </br>';
+                for (var objp in objo) {
+                    if (typeof objo[objp] === 'string') {
+                        objstr += levelStr +
+                                objp + ': ' + objo[objp] + ' </br>';
                     } else {
-                        objStr += objLevelStr +
-                                objP + ': { </br>' + objToStrings(objO[objP], maxLevel, objLevel + 1) + objLevelStr + '}</br>';
+                        objstr += levelStr +
+                                objp + ': { </br>' + Objprint(objo[objp], maxLevel, level + 1) + levelStr + '}</br>';
                     }
                 }
 
                 // Remove this if you don't want the pre tag, but make sure to remove
                 // the open pre tag on the top as well
-                if (objLevel === 0) {
-                    objStr += '</pre>';
+                if (level === 0) {
+                    objstr += '</pre>';
                 }
-                return objStr;
+                return objstr;
             };
         </script>
 
@@ -122,13 +126,19 @@ and open the template in the editor.
             });
 
             function fadeinH() {
-                $("div").each(
-                        function (i) {
+                $("img").each(
+                        function (i, element) {
                             // element == this
                             $(this).fadeIn(i * clocksec);
-//                            $(this).addEventListener("click", function () {
-//                    myFunction(p1, p2);
-//                    });
+                            element.addEventListener("mouseover", function () {
+                                $("p").append(element.src + "<br>");
+                                $("p").append(("MouseOver Picture : " + (i + 1) + "<br>"));
+                                if (i === 0) {
+                                    $("p").empty();
+                                    $("p").append(element.src + "<br>");
+                                    $("p").append(("Reset by MouseOver Picture : " + (i + 1) + "<br>"));
+                                }
+                            });
                         }
                 );
                 setTimeout(fadeoutH, count * clocksec);
@@ -136,7 +146,7 @@ and open the template in the editor.
             }
 
             function fadeoutH() {
-                $("div").each(
+                $("img").each(
                         function (i) {
                             // element == this
                             $(this).fadeOut((count - i) * clocksec);
@@ -146,6 +156,7 @@ and open the template in the editor.
             }
 
             $(document).ready(function () {
+                //AutoSroll & Fade
                 //Console Log Program Performance
                 console.log("Program Performance :" + performance.now());
                 fadeinH();
@@ -158,7 +169,6 @@ and open the template in the editor.
     <body>
         <button id="FadeIn">FadeIn</button>
         <button id="FadeOut">Fadeout</button>
-        <p id="test"></p>
 
         <!--// Image table //-->
         <link rel="stylesheet" type="text/css" href="image.css">
@@ -210,6 +220,7 @@ and open the template in the editor.
             <tr>
         </table>
 
+        <p id="test"></p>
         <!--        <br>
                 For Testing of Bubbling.
                 <link type="text/css" rel="stylesheet" href="./BubblingExample.css" property="s">

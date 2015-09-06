@@ -18,15 +18,16 @@ img {
     width:100px;
     height:100px;
     resize: both;
+    display:none;
 }
 
 div {
     width:100%;
     height:100%;
-    display:none;
+    /*display:none;*/
 }
 
 .withImg {
-    border-style: dotted;
-    border-width: 1px;
+    /*border-style: dotted;*/
+    /*border-width: 1px;*/
 }
