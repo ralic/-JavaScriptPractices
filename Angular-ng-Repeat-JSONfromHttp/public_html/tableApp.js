@@ -20,7 +20,7 @@ app.controller('customersCtrl', function ($scope, $http) {
     $scope.cellStyle = {
         "text-align": "left",
         "width": "200px"
-    }
+    };
     // Retrive data from a JSON http address
     $http.get("http://api.randomuser.me/0.4/?results=10")
             .success(function (response) {
