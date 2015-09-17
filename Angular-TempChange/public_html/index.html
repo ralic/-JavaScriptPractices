@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <!-- jQuery-->
+        <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+        <!-- End of jQuery-->
+
+        <!-- BootStrap-->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <!-- End of BootStrap-->
+
+
+        <!--Angular JS-->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
+        <script src="https://code.angularjs.org/1.4.6/angular.js"></script>
+        <!--<script src="https://code.angularjs.org/2.0.0-alpha.37/angular2.js"></script>-->
+        <!--End of Angular JS-->
+
+        <style>
+            body  {
+                background-image: url("http://previews.123rf.com/images/frbird/frbird1304/frbird130400008/19018073-Outdoor-Thermometer-Hot-and-cold-temperature-Highly-detailed-vector-illustration--Stock-Vector.jpg");
+                background-color: #cccccc;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div ng-app = "myapp" ng-controller = "temperatureController" >
+            <h2 align = "center" > Celsius to Fahrenheit converter </h2>
+            <div class = "container" >
+                <form role = "form" >
+                    <div class = "row" >
+                        <div class = "form-group" >
+                            <label for = "code" > Celsuis </label>
+                            <input type = "text" class = "form-control input-lg" ng-model = "TC" ng-change = "C2F()" ng-style="myStyleC">
+                        </div>
+                    </div>
+
+                    <div class = "row" >
+                        <label for = "code" > Fahernheit </label>
+                        <input type = "text" class = "form-control input-lg" ng-model = "TF" ng-change = "F2C()"  ng-style="myStyleF">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script >
+            // in the division,
+            // ng-style is localzied CSS Styling.
+            // ng-model is the variable
+            // ng-change is the event listener
+
+            var app = angular.module("myapp", []);
+            app.controller("temperatureController", function ($scope) {
+                // Initialization
+                $scope.TC = "Input Celsuis to convert to Fahernheit";
+                $scope.TF = "Input Fahernheit to convert to Celsuis";
+                // Customerized Styling Initialization
+                $scope.myStyle1 = {};
+                $scope.myStyle2 = {};
+                // Event handlers
+
+                // Using underneath console log to evalute typeof / Number / isNaN functions.
+                // console.log(($scope.TC));
+                // -> it's easy to call the variable using $scope object.
+                // console.log(Number($scope.TC));
+                // -> if Number function  is unable to convert the string, it returns NaN
+                // console.log(isNaN(Number($scope.TC)));
+                //
+                // CheckTypeF check type of C and change its bg color
+                // if it's not a number. bg = red, else, normal.
+
+                var checkType1 = function () {
+                    console.log("Checking input");
+                    if (isNaN(Number($scope.TC))) {
+                        $scope.myStyleC = {
+                            "background": "red"
+                        }
+                    } else {
+                        $scope.myStyleC = {
+                            "background": ""
+                        }
+                    }
+                };
+                // CheckTypeF check type of F and change its bg color
+                var checkType2 = function () {
+                    console.log("Checking input");
+                    if (isNaN(Number($scope.TF))) {
+                        $scope.myStyleF = {
+                            "background": "red"
+                        }
+                    } else {
+                        $scope.myStyleF = {
+                            "background": ""
+                        }
+                    }
+                };
+                // C2F give value from C to F
+                $scope.C2F = function () {
+                    checkType1();
+                    if ($scope.TC === "") {
+                        $scope.TF = " ";
+                    } else
+                        $scope.TF = $scope.TC * 1.8 + 32;
+                };
+                // C2F  give value from C to F
+                $scope.F2C = function () {
+                    checkType2();
+                    if ($scope.TF === "") {
+                        $scope.TC = " ";
+                    } else
+                        $scope.TC = ($scope.TF - 32) * 5 / 9;
+                };
+
+            });
+        </script>
+        <!--        T(°F) = T(°C) × 9/5 + 32
+        T(°F) = T(°C) × 1.8 + 32-->
+        <!--<link rel="stylesheet" type="text/css" href="newcss.css">-->
+
+    </body>
+</html>

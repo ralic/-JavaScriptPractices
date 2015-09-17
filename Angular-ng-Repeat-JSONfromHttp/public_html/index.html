@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ng-repeat Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+    </head>
+    <body>
+
+        <div ng-app="myApp" ng-controller="customersCtrl">
+
+            <table border="1" >
+                <tr ng-style="TableHeaderStyle">
+                    <td>Full Name </td>
+                    <td>Gender</td>
+                    <td>e-Mail</td>
+                    <td>SSN</td>
+                </tr>
+                <tr ng-repeat="x in names">
+                    <td>
+                        {{ x.user.name.first + ', ' + x.user.name.last}}
+
+                    </td>
+                    <td>
+                        {{x.user.gender}}
+                    </td>
+                    <td>
+                        {{x.user.email}}
+                    </td>
+                    <td>
+                        {{x.user.SSN}}
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('customersCtrl', function ($scope, $http) {
+                $scope.TableHeaderStyle = {
+                    "text-align": "center",
+                    "background": "cyan"
+                };
+                $http.get("http://api.randomuser.me/0.4/?results=10")
+                        .success(function (response) {
+                            $scope.names = response.results;
+                        });
+            });
+        </script>
+    </body>
+</html>
+
+<!--Please consume this API
+http://api.randomuser.me/0.4/?results=10
+use angular $http in the controller to the data and put in a local array
+This API / URL will give u list of users in the JSON You can copy paste this URL in browser to see how the JSON looks like --you will get ugly JSON which you cant comprehend so now go to JSONLint.com  copy paste the result u get in big box and click Validate - you will get formatted JSON so you can visualize how the JSON looks like
+Now in the View - create a Table using ng-repeat (repeat on <tr>) and show following columns in the table
+1) user Full name
+2) gender
+3) email
+4) SSN
+
+<!--
+{{ x.user.name.first + ', ' + x.user.name.last
+                + " |   " + x.user.gender +
+                    +"  |   " + x.user.email +
+                    "   |   " + x.user.SSN}}
+
+1) user Full name
+2) gender
+3) email
+4) SSN
+-->
