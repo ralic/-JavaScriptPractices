@@ -31,7 +31,6 @@
                 background-color: #cccccc;
             }
         </style>
-
     </head>
 
     <body>
@@ -41,13 +40,13 @@
                 <form role = "form" >
                     <div class = "row" >
                         <div class = "form-group" >
-                            <label for = "code" > Celsuis </label>
+                            <label> Celsuis </label>
                             <input type = "text" class = "form-control input-lg" ng-model = "TC" ng-change = "C2F()" ng-style="myStyleC">
                         </div>
                     </div>
 
                     <div class = "row" >
-                        <label for = "code" > Fahernheit </label>
+                        <label> Fahernheit </label>
                         <input type = "text" class = "form-control input-lg" ng-model = "TF" ng-change = "F2C()"  ng-style="myStyleF">
                     </div>
                 </form>
@@ -61,7 +60,8 @@
             // ng-change is the event listener
 
             var app = angular.module("myapp", []);
-            app.controller("temperatureController", function ($scope) {
+            app.controller("temperatureController", mycontroller);
+            function mycontroller($scope) {
                 // Initialization
                 $scope.TC = "Input Celsuis to convert to Fahernheit";
                 $scope.TF = "Input Fahernheit to convert to Celsuis";
@@ -85,11 +85,11 @@
                     if (isNaN(Number($scope.TC))) {
                         $scope.myStyleC = {
                             "background": "red"
-                        }
+                        };
                     } else {
                         $scope.myStyleC = {
                             "background": ""
-                        }
+                        };
                     }
                 };
                 // CheckTypeF check type of F and change its bg color
@@ -98,11 +98,11 @@
                     if (isNaN(Number($scope.TF))) {
                         $scope.myStyleF = {
                             "background": "red"
-                        }
+                        };
                     } else {
                         $scope.myStyleF = {
                             "background": ""
-                        }
+                        };
                     }
                 };
                 // C2F give value from C to F
@@ -122,8 +122,11 @@
                         $scope.TC = ($scope.TF - 32) * 5 / 9;
                 };
 
-            });
+            }
+            ;
         </script>
+
+
         <!--        T(°F) = T(°C) × 9/5 + 32
         T(°F) = T(°C) × 1.8 + 32-->
         <!--<link rel="stylesheet" type="text/css" href="newcss.css">-->
