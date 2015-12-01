@@ -1,0 +1,10 @@
+{
+    "elements": {
+        "list": {}
+    },
+    "attributes": {
+        "height": {
+            "context": "table"
+        }
+    }
+}
