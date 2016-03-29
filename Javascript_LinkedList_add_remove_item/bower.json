@@ -1,0 +1,13 @@
+{
+    "name": "Javascript_LinkedList_add_remove_item",
+    "version": "1.0.0",
+    "main": "path/to/main.css",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt"
+    ],
+    "dependencies": {
+    },
+    "devDependencies": {
+    }
+}
