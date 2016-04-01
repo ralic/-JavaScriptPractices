@@ -33,6 +33,7 @@ var matrix3 = [
 // Answer = 3;
 
 var pop2Dmatrix = function (i, j) {
+    // ES2016 arrow operator.
     // Works well in chrome browser, yet it is unable to formatted corredctly by netbeans IDE8.1
 //    var matrix = new Array(i).fill(false).map(row => new Array(j).fill(false));
     return matrix;
