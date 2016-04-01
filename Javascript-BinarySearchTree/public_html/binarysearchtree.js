@@ -118,12 +118,15 @@ BST.prototype.findlastright = function (node) {
     }
     return search;
 };
+
 BST.prototype.findlastleft = function (node) {
 
 };
+
 BST.prototype.findson = function (node) {
 
 };
+
 BST.prototype.del = function (data) {
     var search = this.root;
 };
