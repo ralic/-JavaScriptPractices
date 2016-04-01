@@ -2,9 +2,9 @@
  * Student Info: Name=Lo,WeiShun , ID= 13108
  * Subject: CourseNo_HWNo_Summer_2015
  * Author: raliclo
- * Filename: island.js
- * Date and Time: Mar 31, 2016 8:09:11 AM
- * Project Name: SearchForIsland
+ * Filename: image.js.js
+ * Date and Time: Apr 1, 2016 10:49:32 AM
+ * Project Name: Javascript-SearchForIsland
  */
 /*
  * Copyright 2016 raliclo.
@@ -22,33 +22,6 @@
  * limitations under the License.
  */
 
-//http://collabedit.com/wf7vr
-
-//find the number of islands. Given a matrix, '1' = land, '0' equals water.
-//
-//[
-//   [0,1,0,0,1],
-//   [1,1,0,0,0],
-//   [0,0,0,0,0],
-//   [1,0,1,0,1],
-//   [1,0,0,0,1],
-//]
-//
-//answer: 5
-
-var matrix1 = [
-    [0, 1, 0, 0, 1],
-    [1, 1, 0, 1, 0],
-    [0, 1, 0, 0, 0],
-    [0, 1, 1, 0, 0],
-    [1, 1, 0, 0, 1]];
-
-var matrix2 = [
-    [0, 1, 0, 0, 1],
-    [1, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [1, 0, 1, 0, 1],
-    [1, 0, 0, 0, 1]];
 
 var matrix3 = [
     [0, 1, 0, 0, 1],
@@ -56,6 +29,8 @@ var matrix3 = [
     [0, 1, 0, 0, 0],
     [1, 0, 1, 0, 1],
     [1, 0, 0, 0, 1]];
+
+// Answer = 3;
 
 var pop2Dmatrix = function (i, j) {
     // Works well in chrome browser, yet it is unable to formatted corredctly by netbeans IDE8.1
@@ -69,7 +44,6 @@ var chkmatrix = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0]];
-
 var count = 0;
 
 /*
@@ -77,7 +51,7 @@ var count = 0;
  */
 
 var zerofy = function (i, j, arr2D) {
-//    chkmatrix[i][j] = chkmatrix[i][j] + 1;
+    chkmatrix[i][j] = chkmatrix[i][j] + 1;
     if (arr2D[i][j] === 0) {
         return;
     }
@@ -93,17 +67,29 @@ var zerofy = function (i, j, arr2D) {
     // Part-1, is it topedge? Verify by check chkmatrix;
     if (topedge) {
         if (!bottomedge) {
-            zerofy(i, j + 1, arr2D);
+            zerofy(i, j + 1, arr2D);// For diagonal
         }
         if (leftedge) {
             zerofy(i + 1, j, arr2D);
+            if (!bottomedge) {
+                zerofy(i + 1, j + 1, arr2D);// For diagonal
+            }
             return;
         } else if (rightedge) {
             zerofy(i - 1, j, arr2D);
+            if (!bottomedge) {
+                zerofy(i - 1, j + 1, arr2D);// For diagonal
+            }
             return;
         } else {
             zerofy(i + 1, j, arr2D);
             zerofy(i - 1, j, arr2D);
+            if (!bottomedge) {
+                zerofy(i + 1, j + 1, arr2D);// For diagonal
+            }
+            if (!bottomedge) {
+                zerofy(i - 1, j + 1, arr2D);// For diagonal
+            }
             return;
         }
 
@@ -111,13 +97,17 @@ var zerofy = function (i, j, arr2D) {
     } else if (bottomedge) {
         if (leftedge) {
             zerofy(i + 1, j, arr2D);
+            zerofy(i + 1, j - 1, arr2D);// For diagonal
             return;
         } else if (rightedge) {
             zerofy(i - 1, j, arr2D);
+            zerofy(i - 1, j - 1, arr2D);// For diagonal
             return;
         } else {
             zerofy(i + 1, j, arr2D);
+            zerofy(i + 1, j - 1, arr2D);// For diagonal
             zerofy(i - 1, j, arr2D);
+            zerofy(i - 1, j - 1, arr2D);// For diagonal
             return;
         }
 
@@ -127,13 +117,22 @@ var zerofy = function (i, j, arr2D) {
         zerofy(i, j + 1, arr2D);
         if (leftedge) {
             zerofy(i + 1, j, arr2D);
+            zerofy(i + 1, j - 1, arr2D);// For diagonal
+            zerofy(i + 1, j + 1, arr2D);// For diagonal
             return;
         } else if (rightedge) {
             zerofy(i - 1, j, arr2D);
+            zerofy(i - 1, j - 1, arr2D);// For diagonal
+            zerofy(i - 1, j + 1, arr2D);// For diagonal
             return;
         } else {
             zerofy(i + 1, j, arr2D);
+            zerofy(i + 1, j - 1, arr2D);// For diagonal
+            zerofy(i + 1, j + 1, arr2D);// For diagonal
             zerofy(i - 1, j, arr2D);
+            zerofy(i - 1, j - 1, arr2D);// For diagonal
+            zerofy(i - 1, j + 1, arr2D);// For diagonal
+
         }
     }
     return;
@@ -158,6 +157,5 @@ var scanmatrix = function (arr2D) {
     return count;
 };
 
-a = scanmatrix(matrix1);
-b = scanmatrix(matrix2);
-console.log(a, b);
+//a = scanmatrix(matrix3);
+//console.log(a);
