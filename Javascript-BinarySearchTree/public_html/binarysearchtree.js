@@ -53,6 +53,7 @@
 
 var BST = function () {
     this.root = null;
+    this.size = 0;
 };
 var Node = function (data) {
     this.data = data;
@@ -86,6 +87,7 @@ BST.prototype.postorder = function (node) {
 };
 //http://collabedit.com/mjmeb
 BST.prototype.add = function (newnode) {
+    this.size++;
     if (this.root === null) {
         this.root = newnode;
     } else {
