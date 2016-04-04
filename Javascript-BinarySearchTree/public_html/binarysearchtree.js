@@ -158,11 +158,11 @@ bst2.add(new Node(7));
 bst2.add(new Node(10));
 bst2.add(new Node(6));
 bst2.add(new Node(11));
-bst2.add(new Node(8)); // ??
+bst2.add(new Node(8));
 bst2.add(new Node(3));
 bst2.add(new Node(5));
 bst2.add(new Node(1));
 bst2.add(new Node(4));
-bst2.add(new Node(9)); // ??
+bst2.add(new Node(9));
 bst2.add(new Node(2));
 
