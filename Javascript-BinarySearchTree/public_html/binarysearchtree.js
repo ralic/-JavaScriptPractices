@@ -59,6 +59,7 @@ var Node = function (data) {
     this.data = data;
     this.left = null;
     this.right = null;
+    this.next = null;
 };
 BST.prototype.inorder = function (node) {
     if (node === null) {
@@ -125,9 +126,27 @@ BST.prototype.findlastleft = function (node) {
 
 };
 
-BST.prototype.findson = function (node) {
-
+BST.prototype.findelement = function (node) {
+    var search = this.root;
+    while (true) {
+        if (search.data > node.data) {
+            if (search.left !== null) {
+                search = search.left;
+            }
+        } else if (search.data < node.data)
+        {
+            if (search.right !== null) {
+                search = search.right;
+            }
+        } else if (search.data === node.data) {
+            return search;
+        } else {
+            console.log("Node not in Tree");
+            return false;
+        }
+    }
 };
+
 
 BST.prototype.del = function (data) {
     var search = this.root;
