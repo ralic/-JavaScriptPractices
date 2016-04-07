@@ -48,7 +48,7 @@ var chkmatrix = [
 var count = 0;
 
 /*
- * Zerofy is to check non-diagonal objects
+ * This Zerofy check diagonal objects as well
  */
 
 var zerofy = function (i, j, arr2D) {
@@ -71,20 +71,20 @@ var zerofy = function (i, j, arr2D) {
             zerofy(i, j + 1, arr2D);// For diagonal
         }
         if (leftedge) {
-            zerofy(i + 1, j, arr2D);
+            zerofy(i + 1, j, arr2D); // To Right
             if (!bottomedge) {
                 zerofy(i + 1, j + 1, arr2D);// For diagonal
             }
             return;
         } else if (rightedge) {
-            zerofy(i - 1, j, arr2D);
+            zerofy(i - 1, j, arr2D);// To Left
             if (!bottomedge) {
                 zerofy(i - 1, j + 1, arr2D);// For diagonal
             }
             return;
         } else {
-            zerofy(i + 1, j, arr2D);
-            zerofy(i - 1, j, arr2D);
+            zerofy(i + 1, j, arr2D); // To Right
+            zerofy(i - 1, j, arr2D); // To Left
             if (!bottomedge) {
                 zerofy(i + 1, j + 1, arr2D);// For diagonal
             }
@@ -97,43 +97,42 @@ var zerofy = function (i, j, arr2D) {
         // Part-2, is it bottomedge? Verify by check chkmatrix;
     } else if (bottomedge) {
         if (leftedge) {
-            zerofy(i + 1, j, arr2D);
+            zerofy(i + 1, j, arr2D); // To Right
             zerofy(i + 1, j - 1, arr2D);// For diagonal
             return;
         } else if (rightedge) {
-            zerofy(i - 1, j, arr2D);
+            zerofy(i - 1, j, arr2D); // To Left
             zerofy(i - 1, j - 1, arr2D);// For diagonal
             return;
         } else {
-            zerofy(i + 1, j, arr2D);
+            zerofy(i + 1, j, arr2D); // To Right
             zerofy(i + 1, j - 1, arr2D);// For diagonal
-            zerofy(i - 1, j, arr2D);
+            zerofy(i - 1, j, arr2D); // To Left
             zerofy(i - 1, j - 1, arr2D);// For diagonal
             return;
         }
 
         // Part-3, for all inner elements
     } else {
-        zerofy(i, j - 1, arr2D);
-        zerofy(i, j + 1, arr2D);
+        zerofy(i, j - 1, arr2D); // To down
+        zerofy(i, j + 1, arr2D); // To up
         if (leftedge) {
-            zerofy(i + 1, j, arr2D);
+            zerofy(i + 1, j, arr2D); // To Right
             zerofy(i + 1, j - 1, arr2D);// For diagonal
             zerofy(i + 1, j + 1, arr2D);// For diagonal
             return;
         } else if (rightedge) {
-            zerofy(i - 1, j, arr2D);
+            zerofy(i - 1, j, arr2D); // To Left
             zerofy(i - 1, j - 1, arr2D);// For diagonal
             zerofy(i - 1, j + 1, arr2D);// For diagonal
             return;
         } else {
-            zerofy(i + 1, j, arr2D);
+            zerofy(i + 1, j, arr2D); // To Right
             zerofy(i + 1, j - 1, arr2D);// For diagonal
             zerofy(i + 1, j + 1, arr2D);// For diagonal
-            zerofy(i - 1, j, arr2D);
+            zerofy(i - 1, j, arr2D); // To Left
             zerofy(i - 1, j - 1, arr2D);// For diagonal
             zerofy(i - 1, j + 1, arr2D);// For diagonal
-
         }
     }
     return;
