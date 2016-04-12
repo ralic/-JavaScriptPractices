@@ -7,22 +7,52 @@
  * Project Name: HTML5Application
  */
 
+'use strict';
 
-k = new Stack();
-k.push(1);
-k.push(2);
-k.push(3);
-k.push(4);
-k.pop();
-k.pop();
-k.pop();
+var ss = new Stack();
+ss.push(1);
+ss.push(2);
+ss.push(3);
+ss.push(4);
+ss.push(5);
+ss.push(6);
+ss.push(7);
+ss.pop();
+ss.pop();
+ss.pop();
+
+//console.log(ss.size);
+//console.log(ss);
+var result = ss.find(2);
+console.log(result);
+
+var result = ss.find(9);
+console.log(result);
+
+var qq = new Queue1();
+qq.add(1);
+qq.add(2);
+qq.add(3);
+qq.add(4);
+qq.del();
+qq.del();
+qq.del();
 
 
-k = new Queue();
-k.add(1);
-k.add(2);
-k.add(3);
-k.add(4);
-k.del();
-k.del();
-k.del();
+var qq2 = new Queue2();
+qq2.add(1);
+qq2.add(2);
+qq2.add(3);
+qq2.add(4);
+qq2.add(5);
+qq2.add(6);
+qq2.add(7);
+console.log(qq2.find(3));
+//qq2.del();
+//qq2.del();
+//qq2.del();
+//qq2.del();
+//qq2.del();
+//qq2.del();
+//qq2.del();
+console.log(qq2);
