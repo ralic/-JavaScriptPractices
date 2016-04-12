@@ -63,6 +63,7 @@ var bst3 = new BST();
 bst3.mintree(list, 0, list.length);
 console.log(bst3);
 bst3.inorder(bst3.root);
+
 //bst3.add();
 // Tree built
 //           6

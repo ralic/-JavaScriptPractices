@@ -45,7 +45,7 @@ equalBSTcheck = function (root1, root2) {
 //    console.log(root1);
 //    console.log(root2);
 //    console.log(countBST2size);
-    if (root1.left !== null && root1.left !== null) {
+    if (root1.left !== null && root2.left !== null) {
         equalBSTcheck(root1.left, root2.left);
     }
     if (root1.right !== null && root2.right !== null) {

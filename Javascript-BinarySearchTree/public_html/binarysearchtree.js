@@ -59,13 +59,15 @@ var Node = function (data) {
     this.data = data;
     this.left = null;
     this.right = null;
-    this.next = null;
+//    this.next = null;
 };
+var temp = [];
 BST.prototype.inorder = function (node) {
     if (node === null) {
         return;
     }
     this.inorder(node.left);
+    temp.push(node.data);
     console.log(node.data);
     this.inorder(node.right);
     return;
