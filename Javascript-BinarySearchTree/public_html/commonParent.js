@@ -65,8 +65,11 @@ BST.prototype.findNode = function (node, data) {
     return null;
 };
 
+
+//
 // Assume data2 > data1
-var commonParent;
+//
+var commonParent = [];
 BST.prototype.commonParent = function (node, data1, data2) {
     var search = node;
     nd1 = this.findNode(search, data1);
@@ -79,7 +82,7 @@ BST.prototype.commonParent = function (node, data1, data2) {
         count++;
     }
     if (count === 2) {
-        commonParent = node;
+        commonParent.push(node);
         if (search.left !== null) {
             this.commonParent(search.left, data1, data2);
         }
@@ -90,9 +93,12 @@ BST.prototype.commonParent = function (node, data1, data2) {
     if (count !== 2) {
         return commonParent;
     }
-    console.log(node);
-    console.log(count);
+//    console.log(node);
+//    console.log(count);
 };
 
 bst3.commonParent(bst3.root, 1, 5);
+console.log("All possible common parents are : ");
 console.log(commonParent);
+console.log("The smallest parent is");
+console.log(commonParent[commonParent.length - 1]);
