@@ -40,8 +40,6 @@
 //http://collabedit.com/e4p67
 
 
-//commonParent(new Node(3), new Node(5));
-
 BST.prototype.findNode = function (node, data) {
     var search = node;
     while (true) {
@@ -67,10 +65,13 @@ BST.prototype.findNode = function (node, data) {
 
 
 //
-// Assume data2 > data1
+////
+// Usage : commonParent(node, data1, data2);
+// Note1 : Assume data2 > data1
+// Note2 : Works even if Node has no parent
 //
 
-BST.prototype.commonParent = function (node, data1, data2) {
+BST.prototype.commonParent1 = function (node, data1, data2) {
     var search = node;
     var nd1 = this.findNode(search, data1);
     var nd2 = this.findNode(search, data2);
@@ -84,10 +85,10 @@ BST.prototype.commonParent = function (node, data1, data2) {
     if (count === 2) {
         commonParent.push(node);
         if (search.left !== null) {
-            this.commonParent(search.left, data1, data2);
+            this.commonParent1(search.left, data1, data2);
         }
         if (search.right !== null) {
-            this.commonParent(search.right, data1, data2);
+            this.commonParent1(search.right, data1, data2);
         }
     }
     if (count !== 2) {
@@ -101,9 +102,9 @@ BST.prototype.commonParent = function (node, data1, data2) {
 // Usage: getParents( BST, data1, data2)
 // Results : Print all possible common parents, and smallest parent
 //
-getParents = function (BST, data1, data2) {
+getParents1 = function (BST, data1, data2) {
     commonParent = [];
-    BST.commonParent(BST.root, data1, data2);
+    BST.commonParent1(BST.root, data1, data2);
     console.log("All possible common parents are : ");
     console.log(commonParent);
     console.log("The smallest parent is");
@@ -111,4 +112,5 @@ getParents = function (BST, data1, data2) {
     delete commonParent;
 };
 
-getParents(bst3, 2, 4);
+getParents1(bst3, 2, 4);
+

@@ -51,15 +51,16 @@
  */
 
 
-var BST = function () {
-    this.root = null;
-    this.size = 0;
-};
 var Node = function (data) {
     this.data = data;
     this.left = null;
     this.right = null;
+    this.parent = null; // Added parent point : 2016/04/13
 //    this.next = null;
+};
+var BST = function () {
+    this.root = null;
+    this.size = 0;
 };
 var temp = [];
 BST.prototype.inorder = function (node) {

@@ -24,7 +24,7 @@
 
 'use strict';
 //
-//Single pointer Queue
+//Double pointer Queue
 //
 //FIFO
 
