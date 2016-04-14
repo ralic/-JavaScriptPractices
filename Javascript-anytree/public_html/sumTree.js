@@ -107,6 +107,13 @@ Tree.prototype.BFSwalk = function (node) {
     this.BFSwalk(node.right);
 };
 
+
+var findBFS = function (tree) {
+    tree.BFSwalk(tree.root);
+    ans = tree.BFS;
+    return ans;
+};
+
 var sumNode = function (node) {
     if (node.parent !== undefined) {
         if (node.parent.subsum === undefined) {
