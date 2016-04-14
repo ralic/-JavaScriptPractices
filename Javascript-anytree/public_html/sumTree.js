@@ -86,6 +86,10 @@ t4.root.right.left = new Node(55);
 t4.root.right.right = new Node(75);
 t4.size = 7;
 
+// BFSwalk 
+// a. temporay registered a parent pointer for non-root nodes.
+// b. save the walk results in BSF pointer
+
 Tree.prototype.BFSwalk = function (node) {
     if (this.BFS === undefined) {
         console.log("[Info]Register a BFS array for the tree");

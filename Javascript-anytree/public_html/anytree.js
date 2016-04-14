@@ -72,6 +72,10 @@ t2.root.right = new Node("B");
 t2.root.right.right = new Node("C");
 t2.size = 3;
 
+// inorder Walk 
+// -- temporay registered a pointer for inroder walk array.
+
+
 Tree.prototype.inorder = function (node) {
     if (this.INORDER === undefined) {
         this.INORDER = [];
