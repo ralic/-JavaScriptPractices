@@ -31,7 +31,22 @@
  then new tree should be 270 50 0 0 130 0 0(PreOrder)
 
 
+
+ t3--
  input:
+ //                50
+ //          30          60
+ //       10    40    55    75
+ //                     35  20  5 
+
+ output:
+ //                230
+ //            50         180
+ //         0    0     35      25
+ //                      0   0   0 
+
+t4--
+input:
  //        50
  //   30          60
  //10    40      55    75
@@ -56,8 +71,11 @@ t3.root.left.left = new Node(10);
 t3.root.left.right = new Node(40);
 t3.root.right = new Node(60);
 t3.root.right.left = new Node(55);
+t3.root.right.left.left = new Node(35);
 t3.root.right.right = new Node(75);
-t3.size = 7;
+t3.root.right.right.left = new Node(20);
+t3.root.right.right.right = new Node(5);
+t3.size = 10;
 
 t4.root = new Node(50);
 t4.root.left = new Node(30);
@@ -70,6 +88,7 @@ t4.size = 7;
 
 Tree.prototype.BFSwalk = function (node) {
     if (this.BFS === undefined) {
+        console.log("[Info]Register a BFS array for the tree");
         this.BFS = [];
         this.BFS.push(node);
     }
@@ -80,7 +99,6 @@ Tree.prototype.BFSwalk = function (node) {
         node.left.parent = node;
         this.BFS.push(node.left);
     }
-
     if (node.right !== null) {
         node.right.parent = node;
         this.BFS.push(node.right);
@@ -100,11 +118,10 @@ var sumNode = function (node) {
             delete node.parent;
             node.data = 0;
         } else {
-            console.log("[Info]Middle level sum up left and right's subsum");
-            node.parent.subsum += node.data;
+            console.log("[Info]Middle level pass its subsum and its data to parent");
+            node.parent.subsum += node.data+node.subsum;
             delete node.parent;
             node.data = node.subsum;
-            delete node.subsum;
             delete node.subsum;
         }
     } else {
@@ -112,7 +129,7 @@ var sumNode = function (node) {
         node.data = node.data + node.left.data + node.right.data;
         delete node.subsum;
     }
-}
+};
 
 var sumTree = function (anytree) {
     console.log(anytree);
@@ -125,14 +142,18 @@ var sumTree = function (anytree) {
         console.log(tempNode);
     }
     console.log(anytree);
-    t3.inorder(anytree.root);
+    anytree.inorder(anytree.root);
     console.log(anytree.INORDER);
     delete anytree.BFS;
     delete anytree.INORDER;
 };
 
 var beginTime = new Date();
-sumTree(t3);
+console.log("sumTree",sumTree(t4));
 var endTime = new Date();
 console.log("Ralic's Runtime:", endTime - beginTime);
 
+var beginTime = new Date();
+console.log("sumTree",sumTree(t3));
+var endTime = new Date();
+console.log("Ralic's Runtime:", endTime - beginTime);

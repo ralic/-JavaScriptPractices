@@ -45,6 +45,7 @@
  We want to parallely do inorder on both tree, if there is mismatch between
  inorder nodes of both trees, we can stop the traversal and return false
  */
+//http://collabedit.com/3u2ty
 
 var Node = function (data) {
     this.data = data;
