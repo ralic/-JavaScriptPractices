@@ -113,11 +113,6 @@ var sumNode = function (node) {
         delete node.subsum;
     }
 }
-;
-var beginTime = new Date();
-//t1.sumtree(t1.root);
-var endTime = new Date();
-console.log("Ralic's Runtime:", endTime - beginTime);
 
 var sumTree = function (anytree) {
     console.log(anytree);
@@ -136,4 +131,8 @@ var sumTree = function (anytree) {
     delete anytree.INORDER;
 };
 
+var beginTime = new Date();
 sumTree(t3);
+var endTime = new Date();
+console.log("Ralic's Runtime:", endTime - beginTime);
+
