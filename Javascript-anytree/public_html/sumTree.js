@@ -88,7 +88,7 @@ t4.size = 7;
 
 // BFSwalk 
 // a. temporay registered a parent pointer for non-root nodes.
-// b. save the walk results in BSF pointer
+// b. save BFS walked nodes sequentially in BFS array 
 
 Tree.prototype.BFSwalk = function (node) {
     if (this.BFS === undefined) {
@@ -124,19 +124,19 @@ var sumNode = function (node) {
             node.parent.subsum = 0;
         }
         if (node.left === null && node.right === null) {
-            console.log("[Info]Leaf Node becomes zero");
+            console.log("[Info]Leaf Node becomes zero after pass data to parent's subsum");
             node.parent.subsum += node.data;
             delete node.parent;
             node.data = 0;
         } else {
-            console.log("[Info]Middle level pass its subsum and its data to parent");
+            console.log("[Info]Middle level pass its subsum and its data to parent then replace data by subsum");
             node.parent.subsum += node.data+node.subsum;
             delete node.parent;
             node.data = node.subsum;
-            delete node.subsum;
+            delete node.subsum; // cleanup subsum
         }
     } else {
-        console.log("[Info]Root level sumup left and right");
+        console.log("[Info]Root level's data is sum of left.data and right.data");
         node.data = node.data + node.left.data + node.right.data;
         delete node.subsum;
     }
@@ -144,19 +144,19 @@ var sumNode = function (node) {
 
 var sumTree = function (anytree) {
     console.log(anytree);
-    anytree.BFSwalk(anytree.root);
+    anytree.BFSwalk(anytree.root);// create BFSwalk array
     console.log(anytree.BFS);
 
     while (anytree.BFS.length > 0) {
         var tempNode = anytree.BFS.pop();
-        sumNode(tempNode);
+        sumNode(tempNode); // Calculate each Node from tail to head
         console.log(tempNode);
     }
-    console.log(anytree);
-    anytree.inorder(anytree.root);
-    console.log(anytree.INORDER);
-    delete anytree.BFS;
-    delete anytree.INORDER;
+        console.log(anytree);
+        anytree.inorder(anytree.root); // create inorder array
+        console.log(anytree.INORDER); // print inorder array
+        delete anytree.BFS;     // remove registered BFSwalk array
+        delete anytree.INORDER; // remove registered inorder array
 };
 
 var beginTime = new Date();
